@@ -19,6 +19,7 @@ public class Carrello {
         System.out.println("Quanti oggetti vuoi comprare?");
         int lunghezzacarrello = Integer.parseInt(scan.nextLine());
         Prodotto[] cart = new Prodotto[lunghezzacarrello];
+        BigDecimal cartSum = new BigDecimal("0.00");
 
 
 
@@ -53,13 +54,19 @@ public class Carrello {
                 cart[i] = cuffie;
             } else {
                 System.out.println("Comando sconosciuto");
+                i--;
             }
         }
 
         scan.close();
         System.out.println("Ecco i prodotti nel tuo carrello:");
-        for (Object product: cart) {
+        for (Prodotto product: cart) {
             System.out.println(product);
+            cartSum = cartSum.add(product.computeDiscount());
         }
+        System.out.println("Totale: " + cartSum + "€");
+
+
+
     }
 }

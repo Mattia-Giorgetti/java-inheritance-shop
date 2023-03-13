@@ -26,6 +26,14 @@ public class Prodotto {
 //    GETTER SETTER
 
 
+    public BigDecimal getGeneralDiscount() {
+        return generalDiscount;
+    }
+
+    public boolean isFidelity() {
+        return fidelity;
+    }
+
     public int getCodice() {
         return codice;
     }
@@ -74,8 +82,11 @@ public class Prodotto {
                 ", descrizione: " + descrizione +
                 ", prezzo: " + prezzo +
                 ", iva: " + iva +
-                ", prezzo ivato: " + getPrezzoIvato();
+                ", prezzo ivato: " + getPrezzoIvato() +
+                ", prezzo scontato: " + computeDiscount();
     }
 
-
+    public BigDecimal computeDiscount() {
+        return getPrezzoIvato().subtract(prezzo.multiply(generalDiscount).setScale(2, RoundingMode.HALF_EVEN));
+    }
 }
