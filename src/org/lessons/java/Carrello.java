@@ -1,7 +1,6 @@
 package org.lessons.java;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Carrello {
@@ -19,7 +18,7 @@ public class Carrello {
 
         System.out.println("Quanti oggetti vuoi comprare?");
         int lunghezzacarrello = Integer.parseInt(scan.nextLine());
-        String[] cart = new String[lunghezzacarrello];
+        Prodotto[] cart = new Prodotto[lunghezzacarrello];
 
 
 
@@ -33,7 +32,7 @@ public class Carrello {
                 prezzo = new BigDecimal(scan.nextLine());
                 storage = Integer.parseInt(scan.nextLine());
                 Smartphone smartphone = new Smartphone(nomeProdotto, descrizioneProdotto,prezzo,storage);
-                cart[i] = String.valueOf(smartphone);
+                cart[i] = smartphone;
             } else if (sceltaOggetto == 2){
                 System.out.println("Inserisci Nome, Descrizione, Prezzo, Dimensione in pollici e se la TV è smart");
                 nomeProdotto = scan.nextLine();
@@ -42,7 +41,7 @@ public class Carrello {
                 dimensione = new BigDecimal(scan.nextLine());
                 isSmart = scan.nextLine().equalsIgnoreCase("si") ? true : false;
                 TV televisione = new TV(nomeProdotto, descrizioneProdotto,prezzo,dimensione,isSmart);
-                cart[i] = String.valueOf(televisione);
+                cart[i] = televisione;
             } else if (sceltaOggetto == 3){
                 System.out.println("Inserisci Nome, Descrizione, Prezzo, Colore e Tipo di connettività");
                 nomeProdotto = scan.nextLine();
@@ -51,13 +50,16 @@ public class Carrello {
                 colore = scan.nextLine();
                 wired = scan.nextLine().equalsIgnoreCase("wireless") ? false : true;
                 Cuffie cuffie = new Cuffie(nomeProdotto, descrizioneProdotto,prezzo,colore,wired);
-                cart[i] = String.valueOf(cuffie);
+                cart[i] = cuffie;
             } else {
                 System.out.println("Comando sconosciuto");
             }
         }
 
         scan.close();
-        System.out.println(Arrays.toString(cart));
+        System.out.println("Ecco i prodotti nel tuo carrello:");
+        for (Object product: cart) {
+            System.out.println(product);
+        }
     }
 }

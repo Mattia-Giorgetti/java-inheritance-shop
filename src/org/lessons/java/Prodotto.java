@@ -11,6 +11,8 @@ public class Prodotto {
     private String descrizione;
     private BigDecimal prezzo;
     private BigDecimal iva = BigDecimal.valueOf(0.22);
+    private  BigDecimal generalDiscount = new BigDecimal("0.02");
+    private boolean fidelity = false;
 
 //    COSTRUTTORE
     public Prodotto(String nome, String descrizione, BigDecimal prezzo){
@@ -22,6 +24,7 @@ public class Prodotto {
     }
 
 //    GETTER SETTER
+
 
     public int getCodice() {
         return codice;
@@ -55,7 +58,10 @@ public class Prodotto {
         return iva;
     }
 
-//    METODI
+
+
+
+    //    METODI
     public BigDecimal getPrezzoIvato(){
         return prezzo.add(prezzo.multiply(iva).setScale(2, RoundingMode.HALF_EVEN));
     }
@@ -70,4 +76,6 @@ public class Prodotto {
                 ", iva: " + iva +
                 ", prezzo ivato: " + getPrezzoIvato();
     }
+
+
 }
