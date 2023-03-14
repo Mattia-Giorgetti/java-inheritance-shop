@@ -35,4 +35,14 @@ public class Smartphone extends Prodotto{
     public String toString() {
         return super.toString() + " IMEI: " + codeIMEI + " storage: " + storage + "GB";
     }
+
+    @Override
+    public BigDecimal computeDiscount() {
+        if (storage < 32){
+            return getPrezzoIvato().subtract(getPrezzoIvato().multiply(new BigDecimal("0.05")));
+        } else {
+            return super.computeDiscount();
+        }
+
+    }
 }

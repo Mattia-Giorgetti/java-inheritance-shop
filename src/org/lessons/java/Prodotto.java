@@ -12,7 +12,7 @@ public class Prodotto {
     private BigDecimal prezzo;
     private BigDecimal iva = BigDecimal.valueOf(0.22);
     private  BigDecimal generalDiscount = new BigDecimal("0.02");
-    private boolean fidelity = false;
+
 
 //    COSTRUTTORE
     public Prodotto(String nome, String descrizione, BigDecimal prezzo){
@@ -29,11 +29,6 @@ public class Prodotto {
     public BigDecimal getGeneralDiscount() {
         return generalDiscount;
     }
-
-    public boolean isFidelity() {
-        return fidelity;
-    }
-
     public int getCodice() {
         return codice;
     }

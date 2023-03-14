@@ -32,4 +32,14 @@ public class TV extends Prodotto{
     public String toString() {
         return super.toString() + ", dimensioni: " + dimensione + " pollici" + " , smart: " + (smartTV ? "si" : "no");
     }
+
+    @Override
+    public BigDecimal computeDiscount() {
+        if (!smartTV){
+            return getPrezzoIvato().subtract(getPrezzoIvato().multiply(new BigDecimal("0.01")));
+        } else {
+            return super.computeDiscount();
+        }
+
+    }
 }

@@ -1,6 +1,7 @@
 package org.lessons.java;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner;
 
 public class Carrello {
@@ -15,6 +16,7 @@ public class Carrello {
         boolean isSmart;
         String colore;
         boolean wired;
+
 
         System.out.println("Quanti oggetti vuoi comprare?");
         int lunghezzacarrello = Integer.parseInt(scan.nextLine());
@@ -57,16 +59,19 @@ public class Carrello {
                 i--;
             }
         }
+        System.out.println("Hai la fidelity? (s/n)");
+        boolean fidelity = scan.nextLine().equalsIgnoreCase("s");
 
         scan.close();
         System.out.println("Ecco i prodotti nel tuo carrello:");
         for (Prodotto product: cart) {
             System.out.println(product);
-            cartSum = cartSum.add(product.computeDiscount());
+            if(fidelity){
+                cartSum = cartSum.add(product.computeDiscount());
+            } else {
+                cartSum = cartSum.add(product.getPrezzoIvato());
+            }
         }
-        System.out.println("Totale: " + cartSum + "€");
-
-
-
+        System.out.println("Totale: " + cartSum.setScale(2, RoundingMode.HALF_EVEN) + "€");
     }
 }

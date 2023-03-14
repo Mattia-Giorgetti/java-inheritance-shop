@@ -32,4 +32,15 @@ public class Cuffie extends Prodotto{
     public String toString() {
         return super.toString() + ", colore: " + colore + ", connettività: " + (wired ? "wired" : "wireless");
     }
+
+    @Override
+    public BigDecimal computeDiscount() {
+        if (!wired){
+            return getPrezzoIvato().subtract(getPrezzoIvato().multiply(new BigDecimal("0.07")));
+        } else {
+            return super.computeDiscount();
+        }
+
+    }
 }
+
